@@ -1,7 +1,18 @@
 <template>
   <div id="app">
       <h1>App.vue</h1>
-    <Component-A/>
+    <Component-A>
+        <template v-slot:default="{defaultSlotProps, clickMethod}">
+            {{ user.firstName }}
+
+            <button @click="clickMethod">
+                Click me and watch console
+            </button>
+        </template>
+        <template v-slot:age="otherSlotProps">
+            {{ user.age }}
+        </template>
+    </Component-A>
   </div>
 </template>
 
@@ -12,7 +23,21 @@ export default {
   name: 'app',
   components: {
     ComponentA
-  }
+  },
+  data() {
+      return {
+          user: {
+              firstName: 'Nicholas',
+              lastName: 'Cage',
+              age: 50,
+          }
+      };
+  },
+    methods: {
+      clickMethod() {
+          console.log('method click in App.vue');
+      }
+  },
 }
 </script>
 

@@ -1,7 +1,26 @@
 <template>
   <div class="componentA">
       <h2>Component A</h2>
-      <Component-B/>
+
+        <slot v-bind:user="user" :clickMethod="clickMethod">
+            {{ user.lastName }}
+        </slot>
+
+
+        <slot v-bind:user="user"
+              name="age"
+        >
+            {{ user.age }}
+        </slot>
+
+        <slot name="fictional">
+            {{ user.fictional }}
+        </slot>
+
+
+      <Component-B>
+          
+      </Component-B>
   </div>
 </template>
 
@@ -12,7 +31,22 @@ import ComponentB from './ComponentB.vue'
 export default {
   name: 'Component-A',
   components: {ComponentB},
-  props: {}
+  props: {},
+  data() {
+      return {
+          user: {
+              firstName: 'Don',
+              lastName: 'Quixote',
+              age: 219,
+              fictional: 'yeah totally made up',
+          }
+      };
+  },
+  methods: {
+      clickMethod() {
+          console.log('method click in ComponentA');
+      }
+  },
 }
 </script>
 

@@ -6,16 +6,17 @@
             {{ user.lastName }}
         </slot>
 
-
         <slot v-bind:user="user"
               name="age"
         >
-            {{ user.age }}
+            {{ user.age_months }}
         </slot>
 
+<!-- 
         <slot name="fictional">
             {{ user.fictional }}
-        </slot>
+        </slot> 
+-->
 
 
       <Component-B>
@@ -37,7 +38,8 @@ export default {
           user: {
               firstName: 'Don',
               lastName: 'Quixote',
-              age: 219,
+              age_years: 219,
+              age_months: 12345,
               fictional: 'yeah totally made up',
           }
       };
